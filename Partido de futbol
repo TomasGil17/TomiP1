@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int main() {
+  int local, visitante;
+  int totalPartidos = 0;
+  int victoriasLocal = 0;
+  int victoriasVisitante = 0;
+  int empates = 0;
+  char continuar = 's';
+
+  printf("Ingrese los resultados de los partidos de fútbol (goles del local y visitante).\n");
+  printf("Para finalizar, ingrese cualquier valor no numérico para el local.\n");
+
+  while (1) {
+    printf("Ingrese el resultado del partido (Local Visitante): ");
+    if (scanf("%d %d", &local, &visitante) != 2) {
+      // Si no se leen dos enteros, asumimos que el usuario quiere terminar
+      break;
+    }
+
+    totalPartidos++;
+
+    if (local > visitante) {
+      victoriasLocal++;
+    } else if (visitante > local) {
+      victoriasVisitante++;
+    } else {
+      empates++;
+    }
+  }
+
+  printf("\n--- Resultados ---\n");
+  printf("Ingresaste %d partidos:\n", totalPartidos);
+  printf("%d victorias locales.\n", victoriasLocal);
+  printf("%d victorias visitantes.\n", victoriasVisitante);
+  printf("%d empates.\n", empates);
+
+  if (totalPartidos > 0) {
+    double probabilidadLocal = (double)victoriasLocal / totalPartidos * 100;
+    double probabilidadVisitante = (double)victoriasVisitante / totalPartidos * 100;
+    printf("\nProbabilidad de victoria del local: %.2f%%\n", probabilidadLocal);
+    printf("Probabilidad de victoria del visitante: %.2f%%\n", probabilidadVisitante);
+  } else {
+    printf("\nNo se ingresaron partidos.\n");
+  }
+
+  return 0;
+}
