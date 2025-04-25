@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+  int numero;
+  int primeraCifra, segundaCifra;
+
+  printf("Ingrese un número entero de 2 cifras: ");
+  scanf("%d", &numero);
+
+  // Validar que el número tenga 2 cifras
+  if (numero < 10 || numero > 99) {
+    printf("Error: El número debe tener exactamente 2 cifras.\n");
+    return 1; // Indicar error
+  }
+
+  // Obtener la primera cifra (decena)
+  primeraCifra = numero / 10;
+
+  // Obtener la segunda cifra (unidad)
+  segundaCifra = numero % 10;
+
+  printf("La primera cifra es: %d\n", primeraCifra);
+  printf("La segunda cifra es: %d\n", segundaCifra);
+
+  return 0;
+}
