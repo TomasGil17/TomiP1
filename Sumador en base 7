@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+  int num1, num2, suma, acarreo = 0, resultado;
+
+  printf("Ingrese el primer número (base 7, 0-6): ");
+  scanf("%d", &num1);
+
+  printf("Ingrese el segundo número (base 7, 0-6): ");
+  scanf("%d", &num2);
+
+  // Validar que los números estén en base 7
+  if (num1 < 0 || num1 > 6 || num2 < 0 || num2 > 6) {
+    printf("Error: Los números deben estar entre 0 y 6 (base 7).\n");
+    return 1; // Indicar error
+  }
+
+  suma = num1 + num2 + acarreo;
+
+  if (suma >= 7) {
+    acarreo = suma / 7;
+    resultado = suma % 7;
+    printf("La suma en base 7 es: %d (acarreo %d)\n", resultado, acarreo);
+  } else {
+    resultado = suma;
+    printf("La suma en base 7 es: %d\n", resultado);
+  }
+
+  return 0;
+}
