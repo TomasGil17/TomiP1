@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() {
+  int numero;
+  int miles, centenas, decenas, unidades;
+
+  printf("Ingrese un número entero de 4 cifras: ");
+  scanf("%d", &numero);
+
+  // Validar que el número tenga 4 cifras
+  if (numero < 1000 || numero > 9999) {
+    printf("Error: El número debe tener exactamente 4 cifras.\n");
+    return 1; // Indicar error
+  }
+
+  // Obtener las cifras
+  miles = numero / 1000;
+  centenas = (numero % 1000) / 100;
+  decenas = (numero % 100) / 10;
+  unidades = numero % 10;
+
+  printf("Las cifras son: %d, %d, %d y %d\n", miles, centenas, decenas, unidades);
+
+  return 0;
+}
