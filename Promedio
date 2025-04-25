@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+  float nota1, nota2, nota3, promedio;
+
+  printf("Por favor, introduce la primera nota: ");
+  scanf("%f", &nota1);
+
+  printf("Introduce la segunda nota: ");
+  scanf("%f", &nota2);
+
+  printf("Introduce la tercera nota: ");
+  scanf("%f", &nota3);
+
+  promedio = (nota1 + nota2 + nota3) / 3.0;
+
+  printf("El promedio de las tres notas es: %.2f\n", promedio);
+
+  return 0;
+}
