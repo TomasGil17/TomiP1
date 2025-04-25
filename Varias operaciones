@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+  float numero1, numero2, suma, resta, multiplicacion, division;
+
+  printf("Por favor, introduce el primer número: ");
+  scanf("%f", &numero1);
+
+  printf("Introduce el segundo número: ");
+  scanf("%f", &numero2);
+
+  suma = numero1 + numero2;
+  resta = numero1 - numero2;
+  multiplicacion = numero1 * numero2;
+
+  if (numero2 == 0) {
+    printf("Error: No se puede dividir por cero.\n");
+  } else {
+    division = numero1 / numero2;
+    printf("\nResultados:\n");
+    printf("%.2f + %.2f = %.2f\n", numero1, numero2, suma);
+    printf("%.2f - %.2f = %.2f\n", numero1, numero2, resta);
+    printf("%.2f * %.2f = %.2f\n", numero1, numero2, multiplicacion);
+    printf("%.2f / %.2f = %.2f\n", numero1, numero2, division);
+  }
+
+  return 0;
+}
