@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main() {
+  int num1, num2, num3;
+
+  printf("Por favor, introduce el primer número: ");
+  scanf("%d", &num1);
+
+  printf("Introduce el segundo número: ");
+  scanf("%d", &num2);
+
+  printf("Introduce el tercer número: ");
+  scanf("%d", &num3);
+
+  int mayor = num1;
+  int contadorMayores = 1; // Inicializamos con 1 asumiendo que el primero es el mayor
+
+  if (num2 > mayor) {
+    mayor = num2;
+    contadorMayores = 1; // Reiniciamos el contador si encontramos un nuevo mayor
+  } else if (num2 == mayor) {
+    contadorMayores++;
+  }
+
+  if (num3 > mayor) {
+    mayor = num3;
+    contadorMayores = 1; // Reiniciamos el contador si encontramos un nuevo mayor
+  } else if (num3 == mayor) {
+    contadorMayores++;
+  }
+
+  printf("El número mayor es: %d\n", mayor);
+
+  if (contadorMayores > 1) {
+    printf("Hay %d números iguales al mayor.\n", contadorMayores);
+  }
+
+  return 0;
+}
