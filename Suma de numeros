@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+  int n, suma = 0;
+
+  printf("Por favor, introduce un número entero positivo N: ");
+  scanf("%d", &n);
+
+  if (n <= 0) {
+    printf("Por favor, introduce un número entero positivo.\n");
+  } else {
+    // Calcular la suma de los primeros N números enteros usando un bucle for
+    for (int i = 1; i <= n; i++) {
+      suma += i; // Suma el valor actual de i a la variable suma
+    }
+    printf("La suma de los primeros %d números enteros es: %d\n", n, suma);
+
+    // Otra forma más eficiente de calcular la suma usando una fórmula matemática
+    // suma = n * (n + 1) / 2;
+    // printf("La suma de los primeros %d números enteros (usando fórmula) es: %d\n", n, suma);
+  }
+
+  return 0;
+}
