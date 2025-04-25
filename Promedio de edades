@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <float.h> // Para usar DBL_MAX y DBL_MIN
+
+int main() {
+  int edad;
+  int cantidadEdades = 0;
+  double sumaEdades = 0;
+  int edadMinima = 200; // Inicializamos con un valor alto
+  int edadMaxima = -1;  // Inicializamos con un valor bajo
+
+  printf("Ingrese las edades de las personas (ingrese 0 para finalizar):\n");
+
+  while (1) {
+    printf("Ingrese una edad: ");
+    if (scanf("%d", &edad) != 1) {
+      printf("Entrada inválida. Por favor, ingrese un número entero.\n");
+      // Limpiar el buffer de entrada
+      while (getchar() != '\n');
+      continue;
+    }
+
+    if (edad == 0) {
+      break; // El usuario ingresó 0, finalizar el programa
+    } else if (edad < 0) {
+      printf("Error: La edad no puede ser negativa. Por favor, ingrese una edad válida.\n");
+    } else {
+      sumaEdades += edad;
+      cantidadEdades++;
+
+      if (edad < edadMinima) {
+        edadMinima = edad;
+      }
+      if (edad > edadMaxima) {
+        edadMaxima = edad;
+      }
+    }
+  }
+
+  if (cantidadEdades > 0) {
+    double promedio = sumaEdades / cantidadEdades;
+    printf("\n--- Resultados ---\n");
+    printf("Promedio de edad: %.2f\n", promedio);
+    printf("Edad más pequeña: %d\n", edadMinima);
+    printf("Edad más alta: %d\n", edadMaxima);
+  } else {
+    printf("\nNo se ingresaron edades.\n");
+  }
+
+  return 0;
+}
