@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+  // Inicializar el generador de números aleatorios con la hora actual
+  srand(time(NULL));
+
+  printf("Generando 50 números aleatorios entre 0 y 100:\n");
+
+  for (int i = 0; i < 50; i++) {
+    // Generar un número aleatorio entre 0 y 100 (inclusive)
+    int numeroAleatorio = rand() % 101;
+    printf("%d ", numeroAleatorio);
+
+    // Imprimir un salto de línea cada 10 números para mejor legibilidad
+    if ((i + 1) % 10 == 0) {
+      printf("\n");
+    }
+  }
+
+  printf("\nFin de la generación.\n");
+
+  return 0;
+}
