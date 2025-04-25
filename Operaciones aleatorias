@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+  // Inicializar el generador de números aleatorios
+  srand(time(NULL));
+
+  int numero1, numero2, operacion, resultadoUsuario, resultadoCorrecto;
+  int puntos = 0;
+  char seguirJugando = 's';
+
+  printf("Bienvenido al juego de operaciones matemáticas.\n");
+  printf("Resuelve las operaciones. Si aciertas, ganas un punto y sigues.\n");
+  printf("Si te equivocas, el juego termina y se muestra tu puntaje.\n\n");
+
+  while (seguirJugando == 's' || seguirJugando == 'S') {
+    // Generar dos números aleatorios de 2 cifras (10-99)
+    numero1 = (rand() % 90) + 10;
+    numero2 = (rand() % 90) + 10;
+
+    // Generar una operación aleatoria (0: suma, 1: resta, 2: multiplicación)
+    operacion = rand() % 3;
+
+    switch (operacion) {
+      case 0:
+        printf("%d + %d = ? ", numero1, numero2);
+        resultadoCorrecto = numero1 + numero2;
+        break;
+      case 1:
+        printf("%d - %d = ? ", numero1, numero2);
+        resultadoCorrecto = numero1 - numero2;
+        break;
+      case 2:
+        printf("%d * %d = ? ", numero1, numero2);
+        resultadoCorrecto = numero1 * numero2;
+        break;
+    }
+
+    if (scanf("%d", &resultadoUsuario) != 1) {
+      printf("Entrada inválida. Terminando el juego.\n");
+      break;
+    }
+    // Limpiar el buffer de entrada
+    while (getchar() != '\n');
+
+    if (resultadoUsuario == resultadoCorrecto) {
+      printf("¡Correcto!\n");
+      puntos++;
+    } else {
+      printf("¡Incorrecto! La respuesta correcta era %d.\n", resultadoCorrecto);
+      seguirJugando = 'n'; // Terminar el juego
+    }
+
+    if (seguirJugando == 's' || seguirJugando == 'S') {
+      printf("Tu puntaje actual es: %d\n", puntos);
+      printf("¿Quieres seguir jugando? (s/n): ");
+      if (scanf("%c", &seguirJugando) != 1) {
+        printf("Entrada inválida. Terminando el juego.\n");
+        break;
+      }
+      // Limpiar el buffer de entrada
+      while (getchar() != '\n');
+    }
+  }
+
+  printf("\nFin del juego. Ganaste %d puntos.\n", puntos);
+
+  return 0;
+}
