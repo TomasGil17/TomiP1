@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+  double numero1, numero2, resultado;
+
+  printf("Por favor, introduce el primer número decimal: ");
+  scanf("%lf", &numero1);
+
+  printf("Introduce el segundo número decimal: ");
+  scanf("%lf", &numero2);
+
+  if (numero2 == 0) {
+    printf("Error: No se puede dividir por cero.\n");
+  } else {
+    resultado = numero1 / numero2;
+    printf("%.2lf dividido por %.2lf es igual a %.2lf\n", numero1, numero2, resultado);
+  }
+
+  return 0;
+}
