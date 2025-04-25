@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+  int numero1, numero2, suma, resta1, resta2, producto;
+
+  printf("Por favor, introduce el primer número entero: ");
+  scanf("%d", &numero1);
+
+  printf("Introduce el segundo número entero: ");
+  scanf("%d", &numero2);
+
+  suma = numero1 + numero2;
+  resta1 = numero1 - numero2;
+  resta2 = numero2 - numero1;
+  producto = numero1 * numero2;
+
+  printf("\nResultados:\n");
+  printf("La suma de %d y %d es: %d\n", numero1, numero2, suma);
+  printf("La resta de %d menos %d es: %d\n", numero1, numero2, resta1);
+  printf("La resta de %d menos %d es: %d\n", numero2, numero1, resta2);
+  printf("El producto de %d por %d es: %d\n", numero1, numero2, producto);
+
+  return 0;
+}
