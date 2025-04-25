@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+  int numero;
+
+  printf("Por favor, introduce un número entero: ");
+  scanf("%d", &numero);
+
+  if (numero == 0) {
+    printf("El número es cero.\n");
+  } else if (numero > 0) {
+    printf("El número es positivo.\n");
+    // Verificar si es par o impar
+    if (numero % 2 == 0) {
+      printf("Además, es un número par.\n");
+    } else {
+      printf("Además, es un número impar.\n");
+    }
+  } else {
+    printf("El número es negativo.\n");
+  }
+
+  return 0;
+}
