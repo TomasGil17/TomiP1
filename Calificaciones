@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int main() {
+  int calificacion;
+  int cantidadCalificaciones = 0;
+  double sumaCalificaciones = 0;
+
+  printf("Ingrese las calificaciones de los estudiantes (0-10).\n");
+  printf("Ingrese -1 para finalizar la entrada de calificaciones.\n");
+
+  while (1) {
+    printf("Ingrese la calificación del estudiante: ");
+    if (scanf("%d", &calificacion) != 1) {
+      printf("Error: Entrada inválida. Por favor, ingrese un número entero.\n");
+      // Limpiar el buffer de entrada
+      while (getchar() != '\n');
+      continue;
+    }
+
+    if (calificacion == -1) {
+      break; // El usuario ingresó -1, finalizar la entrada
+    } else if (calificacion < 0 || calificacion > 10) {
+      printf("Error: La calificación debe estar entre 0 y 10.\n");
+    } else {
+      sumaCalificaciones += calificacion;
+      cantidadCalificaciones++;
+    }
+  }
+
+  if (cantidadCalificaciones > 0) {
+    double promedio = sumaCalificaciones / cantidadCalificaciones;
+    printf("\n--- Resultados ---\n");
+    printf("Cantidad de calificaciones ingresadas: %d\n", cantidadCalificaciones);
+    printf("Promedio de las calificaciones: %.2f\n", promedio);
+  } else {
+    printf("\nNo se ingresaron calificaciones.\n");
+  }
+
+  return 0;
+}
