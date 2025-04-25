@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+  printf("Números del 1 al 10:\n");
+
+  // Usando un bucle for
+  for (int i = 1; i <= 10; i++) {
+    printf("%d ", i);
+  }
+  printf("\n"); // Salto de línea al final
+
+  // Otra forma usando un bucle while
+  /*
+  int contador = 1;
+  printf("Números del 1 al 10 (usando while):\n");
+  while (contador <= 10) {
+    printf("%d ", contador);
+    contador++;
+  }
+  printf("\n");
+  */
+
+  return 0;
+}
