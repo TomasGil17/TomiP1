@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+  int carta, prediccion;
+  int puntos = 1;
+  char jugar = 's';
+
+  // Inicializar el generador de números aleatorios
+  srand(time(NULL));
+
+  printf("Bienvenido al juego de Poker Alta-Baja (sin el 7).\n");
+  printf("Adivina si la siguiente carta es Alta (>7) o Baja (<7).\n");
+  printf("Si sale 7, pierdes.\n");
+
+  while (jugar == 's' || jugar == 'S') {
+    carta = (rand() % 13) + 1; // Genera un número aleatorio entre 1 y 13
+
+    printf("\nNueva carta...\n");
+    printf("¿Crees que la carta es (1) Alta o (2) Baja? ");
+    if (scanf("%d", &prediccion) != 1) {
+      printf("Entrada inválida. Terminando juego.\n");
+      break;
+    }
+    // Limpiar el buffer de entrada
+    while (getchar() != '\n');
+
+    if (carta == 7) {
+      printf("¡Oh no! Salió un 7. ¡Perdiste!\n");
+      printf("Puntaje final: %d\n", puntos);
+      jugar = 'n'; // Terminar el juego
+    } else if ((prediccion == 1 && carta > 7) || (prediccion == 2 && carta < 7)) {
+      printf("¡Correcto! La carta era %d.\n", carta);
+      puntos *= 2;
+      printf("Tus puntos ahora son: %d\n", puntos);
+      printf("¿Quieres seguir jugando? (s/n): ");
+      if (scanf("%c", &jugar) != 1) {
+        printf("Entrada inválida. Terminando juego.\n");
+        break;
+      }
+      // Limpiar el buffer de entrada
+      while (getchar() != '\n');
+    } else {
+      printf("¡Incorrecto! La carta era %d.\n", carta);
+      printf("¡Perdiste!\n");
+      printf("Puntaje final: %d\n", puntos);
+      jugar = 'n'; // Terminar el juego
+    }
+  }
+
+  printf("\nGracias por jugar.\n");
+
+  return 0;
+}
