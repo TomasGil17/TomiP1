@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+// Estructura para almacenar una frase y su longitud
+typedef struct {
+  char frase[200]; // Asumimos una longitud máxima de 200 caracteres por frase
+  int longitud;
+} FraseInfo;
+
+// Función de comparación para ordenar las frases por longitud (de mayor a menor)
+int compararFrases(const void *a, const void *b) {
+  const FraseInfo *fraseA = (const FraseInfo *)a;
+  const FraseInfo *fraseB = (const FraseInfo *)b;
+  // Orden descendente: devolvemos la diferencia b - a
+  return (fraseB->longitud - fraseA->longitud);
+}
+
+int main() {
+  FraseInfo frases[3];
+
+  printf("Ingrese 3 frases:\n");
+
+  for (int i = 0; i < 3; i++) {
+    printf("Frase %d: ", i + 1);
+    fgets(frases[i].frase, sizeof(frases[i].frase), stdin);
+    // Eliminar el carácter de nueva línea si está presente
+    size_t len = strlen(frases[i].frase);
+    if (len > 0 && frases[i].frase[len - 1] == '\n') {
+      frases[i].frase[len - 1] = '\0';
+    }
+    frases[i].longitud = strlen(frases[i].frase);
+  }
+
+  // Ordenar el arreglo de estructuras usando qsort
+  qsort(frases, 3, sizeof(FraseInfo), compararFrases);
+
+  printf("\nFrases ordenadas por longitud (de mayor a menor):\n");
+  for (int i = 0; i < 3; i++) {
+    printf("%d. \"%s\" (Longitud: %d)\n", i + 1, frases[i].frase, frases[i].longitud);
+  }
+
+  return 0;
+}
