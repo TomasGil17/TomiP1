@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char parrafo[500]; // Cadena para almacenar el párrafo
+    char oracion[500]; // Cadena auxiliar para procesar cada oración
+    int i = 0, j = 0;
+
+    // Pedir al usuario que ingrese el párrafo
+    printf("Introduce un párrafo (oraciones separadas por puntos y palabras separadas por asteriscos):\n");
+    fgets(parrafo, sizeof(parrafo), stdin);
+
+    // Eliminar el salto de línea final si existe
+    parrafo[strcspn(parrafo, "\n")] = '\0';
+
+    printf("\nOraciones procesadas:\n");
+    
+    // Procesar el párrafo
+    while (parrafo[i] != '\0') {
+        if (parrafo[i] == '.') {
+            // Fin de una oración, imprimirla
+            oracion[j] = '\0'; // Terminar la cadena actual
+            // Reemplazar asteriscos por espacios en la oración
+            for (int k = 0; k < j; k++) {
+                if (oracion[k] == '*') {
+                    oracion[k] = ' ';
+                }
+            }
+            printf("%s\n", oracion);
+            j = 0; // Reiniciar el índice de la oración
+        } else {
+            // Agregar el carácter a la oración
+            oracion[j++] = parrafo[i];
+        }
+        i++;
+    }
+
+    // Imprimir la última oración si no termina con un punto
+    if (j > 0) {
+        oracion[j] = '\0'; // Terminar la cadena actual
+        // Reemplazar asteriscos por espacios en la oración
+        for (int k = 0; k < j; k++) {
+            if (oracion[k] == '*') {
+                oracion[k] = ' ';
+            }
+        }
+        printf("%s\n", oracion);
+    }
+
+    return 0;
+}
