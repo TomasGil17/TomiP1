@@ -1,0 +1,103 @@
+#include <stdio.h>
+#include <string.h>
+#define nro 5
+
+struct cuentas {
+	int nro_cuenta;
+	char nombre[30];
+	int saldo;
+};
+
+// Función para ordenar las cuentas por número de cuenta (método de burbuja)
+void ordenarCuentas(struct cuentas cuen[], int n) {
+	int i, j;
+	struct cuentas temp;
+	for (i = 0; i < n - 1; i++) {
+		for (j = 0; j < n - i - 1; j++) {
+			if (cuen[j].nro_cuenta > cuen[j + 1].nro_cuenta) {
+				temp = cuen[j];
+				cuen[j] = cuen[j + 1];
+				cuen[j + 1] = temp;
+			}
+		}
+	}
+}
+
+// Función para realizar búsqueda binaria
+int busquedaBinaria(struct cuentas cuen[], int n, int cuentaBuscada) {
+	int inicio = 0, fin = n - 1, medio;
+	
+	while (inicio <= fin) {
+		medio = (inicio + fin) / 2;
+		
+		if (cuen[medio].nro_cuenta == cuentaBuscada) {
+			return medio; // Retorna el índice donde se encontró la cuenta
+		} else if (cuen[medio].nro_cuenta < cuentaBuscada) {
+			inicio = medio + 1;
+		} else {
+			fin = medio - 1;
+		}
+	}
+	
+	return -1; // Retorna -1 si no se encuentra la cuenta
+}
+
+int main() {
+	struct cuentas cuen[nro];
+	int i, deudor = 0, acreedor = 0, suma_saldos = 0;
+	int cuentaBuscada, indiceEncontrado;
+	
+	// Entrada de datos
+	for (i = 0; i < nro; i++) {
+		printf("Ingrese datos Estructura: %d\n", i + 1);
+		
+		printf("\nIngrese Nro de Cuenta\n");
+		scanf("%i", &cuen[i].nro_cuenta);
+		
+		printf("Ingrese nombre del Cliente\n");
+		scanf("%s", cuen[i].nombre);
+		
+		printf("Ingrese Saldo del Cliente\n");
+		scanf("%d", &cuen[i].saldo);
+		
+		printf("\n");
+		
+		// Clasificar cuentas como deudores o acreedores
+		if (cuen[i].saldo < 0) {
+			deudor++;
+		} else if (cuen[i].saldo > 0) {
+			acreedor++;
+		}
+	}
+	
+	// Ordenar las cuentas por número de cuenta
+	ordenarCuentas(cuen, nro);
+	
+	// Calcular la suma de todos los saldos
+	for (i = 0; i < nro; i++) {
+		suma_saldos += cuen[i].saldo;
+	}
+	
+	// Mostrar resultados
+	printf("Cantidad de deudores: %d\n", deudor);
+	printf("Cantidad de acreedores: %d\n", acreedor);
+	printf("La suma total de los saldos es: %d\n", suma_saldos);
+	
+	// Solicitar el número de cuenta a buscar
+	printf("\nIngrese el número de cuenta que desea buscar: ");
+	scanf("%d", &cuentaBuscada);
+	
+	// Realizar la búsqueda binaria
+	indiceEncontrado = busquedaBinaria(cuen, nro, cuentaBuscada);
+	
+	if (indiceEncontrado != -1) {
+		printf("Cuenta encontrada:\n");
+		printf("Nro. de Cuenta: %d\n", cuen[indiceEncontrado].nro_cuenta);
+		printf("Nombre: %s\n", cuen[indiceEncontrado].nombre);
+		printf("Saldo: %d\n", cuen[indiceEncontrado].saldo);
+	} else {
+		printf("La cuenta con el número %d no fue encontrada.\n", cuentaBuscada);
+	}
+	
+	return 0;
+}
