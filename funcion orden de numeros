@@ -1,0 +1,61 @@
+#include <stdio.h>
+
+// Constante para el tamaño del arreglo
+#define TAM 10
+
+// Función para mostrar el contenido del arreglo
+void mostrarArreglo(int arr[], int tam) {
+    printf("Contenido del arreglo:\n");
+    for (int i = 0; i < tam; i++) {
+        printf("%d\n", arr[i]);
+    }
+}
+
+// Función para determinar si un número es par
+int esPar(int numero) {
+    return numero % 2 == 0; // Retorna 1 si es par, 0 si no lo es
+}
+
+// Procedimiento para ordenar el arreglo (método de burbuja)
+void ordenarArreglo(int arr[], int tam) {
+    int i, j, temp;
+    for (i = 0; i < tam - 1; i++) {
+        for (j = 0; j < tam - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Intercambiar elementos
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    // Declaración e inicialización del arreglo con 10 elementos
+    int arreglo[TAM] = {12, 7, 9, 8, 10, 3, 14, 6, 1, 5};
+
+    // Mostrar el contenido inicial del arreglo
+    printf("Arreglo original:\n");
+    mostrarArreglo(arreglo, TAM);
+
+    // Contar los números pares en el arreglo
+    int cantidadPares = 0;
+    for (int i = 0; i < TAM; i++) {
+        if (esPar(arreglo[i])) {
+            cantidadPares++;
+        }
+    }
+
+    // Mostrar la cantidad de números pares
+    printf("\nCantidad de números pares en el arreglo: %d\n", cantidadPares);
+
+    // Ordenar el arreglo
+    ordenarArreglo(arreglo, TAM);
+
+    // Mostrar el arreglo ordenado
+    printf("\nArreglo ordenado:\n");
+    mostrarArreglo(arreglo, TAM);
+
+    return 0;
+}
